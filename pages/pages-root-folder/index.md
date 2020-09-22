@@ -6,7 +6,9 @@
 #
 layout: frontpage_fairdom
 header:
-  image_fullwidth: header_unsplash_12.jpg
+  image_fullwidth: fairdom-splash.png
+  title: FAIRDOM
+showwidgets: false
 widget1:
   title: "News"
   url: 'news/'  
