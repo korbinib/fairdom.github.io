@@ -1,43 +1,59 @@
 <aside>
 	<div class="panel radius">
-		<h3>Menu</h3>
-		<ul class="accordion">
+		<ul class="accordion" data-accordion>
 
+			{% for link in site.data.navigation %}
+
+				{% if link.url contains 'http' %}
+					{% assign domain = '' %}
+					{% assign _baseurl = '' %}
+				{% elsif link.url == '#' %}
+					{% assign domain = '' %}
+					{% assign _baseurl = site.baseurl %}
+				{% else %}
+					{% assign domain = site.url %}
+					{% assign _baseurl = site.baseurl %}
+				{% endif %}
+
+				{% comment %}   If there are links for left side begin   {% endcomment %}
+				{% if link.side == 'left' %}
+					{% assign menu_id = 'menu' | append: forloop.index %}
+
+					<li class="accordion-navigation">
+						<a href="#{{menu_id}}">{{ link.title }}</a>
+
+						{% comment %}   If left side WITHOUT dropdown menu do   {% endcomment %}
+						{% if link.dropdown == nil %}
+
+
+						{% comment %}   If left side WITH dropdown menu do   {% endcomment %}
+						{% else %}
+						<p id="{{menu_id}}" class="content">
+
+							{% for dropdown_link in link.dropdown %}
+								{% if dropdown_link.url contains 'http' %}
+									{% assign domain = '' %}
+								{% else %}
+									{% assign domain = site.url %}
+								{% endif %}
+
+									<a {% if dropdown_link.class %}class="{{dropdown_link.class}}"{% endif %} href="{{ domain }}{{ site.baseurl }}{{ dropdown_link.url }}"{% if dropdown_link.url contains 'http' %} target="_blank"{% endif %}>
+										{{ dropdown_link.title | escape }}
+									</a>
+									<br/>
+
+							{% endfor %}
+
+						</p>
+
+						{% endif %}
+					</li>
+				{% endif %}
+			{% endfor %}
 
 		</ul>
-		{% for link in site.data.navigation %}
-
-			{% if link.url contains 'http' %}
-				{% assign domain = '' %}
-				{% assign _baseurl = '' %}
-			{% elsif link.url == '#' %}
-				{% assign domain = '' %}
-				{% assign _baseurl = site.baseurl %}
-			{% else %}
-				{% assign domain = site.url %}
-				{% assign _baseurl = site.baseurl %}
-			{% endif %}
-
-			{% comment %}   If there are links for left side begin   {% endcomment %}
-			{% if link.side == 'left' %}
-				<li class="accordian-item" data-accordion-item>
-					<a href="#" class="accordian-title">{{ link.title }}</a>
-				</li>
-				{% comment %}   If left side WITHOUT dropdown menu do   {% endcomment %}
-				{% if link.dropdown == nil %}
-
-
-				{% comment %}   If left side WITH dropdown menu do   {% endcomment %}
-				{% else %}
-
-
-				{% endif %}
-			{% endif %}
-		{% endfor %}
-
 
 	</div>
-
 
 	<div class="border-dotted radius b30">
 		<img src="http://placekitten.com/271/270" alt="uh, Placekitten">
@@ -46,17 +62,4 @@
 		</p>
 	</div>
 
-	<ul class="accordion" data-accordion>
-		<li class="accordion-item is-active" data-accordion-item>
-			<!-- Accordion tab title -->
-			<a href="#" class="accordion-title">Accordion 1</a>
-
-			<!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
-			<div class="accordion-content" data-tab-content>
-				<p>Panel 1. Lorem ipsum dolor</p>
-				<a href="#">Nowhere to Go</a>
-			</div>
-		</li>
-		<!-- ... -->
-	</ul>
 </aside>
