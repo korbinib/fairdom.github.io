@@ -1,0 +1,63 @@
+<aside>
+    <div class="panel radius">
+        <ul>
+
+            {% for link in site.data.navigation %}
+
+            {% if link.url contains 'http' %}
+            {% assign domain = '' %}
+            {% assign _baseurl = '' %}
+            {% elsif link.url == '#' %}
+            {% assign domain = '' %}
+            {% assign _baseurl = site.baseurl %}
+            {% else %}
+            {% assign domain = site.url %}
+            {% assign _baseurl = site.baseurl %}
+            {% endif %}
+
+            {% comment %}   If there are links for left side begin   {% endcomment %}
+            {% if link.side == 'left' %}
+
+
+
+                {% comment %}   If left side WITHOUT dropdown menu do   {% endcomment %}
+                {% if link.dropdown == nil %}
+                    <li{% if link.url == page.url %} class="active"{% elsif page.homepage == true and link.url == '/' %} class="active"{% endif %}><a {% if link.class %}class="{{link.class}}"{% endif %} href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title | escape }}</a></li>
+
+                {% comment %}   If left side WITH dropdown menu do   {% endcomment %}
+                {% else %}
+                    <li class="has-dropdown{% if link.url == page.url %} active{% endif %}">
+                        <a {% if link.class %}class="{{link.class}}"{% endif %} href="{{ domain }}{{ site.baseurl }}{{ link.url }}"{% if link.url contains 'http' %} target="_blank"{% endif %}>{{ link.title | escape }}</a>
+
+                        <ul class="dropdown">
+                            {% for dropdown_link in link.dropdown %}
+
+                            {% if dropdown_link.url contains 'http' %}
+                            {% assign domain = '' %}
+                            {% else %}
+                            {% assign domain = site.url %}
+                            {% endif %}
+
+                            <li><a {% if dropdown_link.class %}class="{{dropdown_link.class}}"{% endif %} href="{{ domain }}{{ site.baseurl }}{{ dropdown_link.url }}"{% if dropdown_link.url contains 'http' %} target="_blank"{% endif %}>{{ dropdown_link.title | escape }}</a></li>
+                            {% endfor %}
+                        </ul>
+
+                    </li>
+
+                {% endif %}
+            </li>
+            {% endif %}
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <div class="border-dotted radius b30">
+        <img src="http://placekitten.com/271/270" alt="uh, Placekitten">
+        <p class="text-left">
+            This is an advertisment with a crazy cat! <a href="http://placekitten.com/">More cats, please!</a>
+        </p>
+    </div>
+
+</aside>

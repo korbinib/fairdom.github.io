@@ -7,8 +7,9 @@
 layout: frontpage_fairdom
 header:
   image_fullwidth: fairdom-splash.png
-  title: FAIRDOM
-showwidgets: false
+  #image_fullwidth: header_unsplash_12.jpg 
+  title: ''   
+showwidgets: true
 widget1:
   title: "News"
   url: 'news/'  
@@ -36,7 +37,7 @@ widget3:
 callforaction:
   url: /blog/archive/
   text: View the latest news ›
-  style: success
+  style: secondary
 permalink: /index.html
 #
 # This is a nasty hack to make the navigation highlight
@@ -52,4 +53,16 @@ homepage: true
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
-This is some content
+
+Do you want to get the most impact from your research?   Are you tired of searching through old computer files to find the methods and data that link together?   Do you want to showcase your research from your best publications?  
+
+FAIRDOM helps you to be in control of collecting, managing, storing, and publishing your data, models, and operating procedures.
+
+[Join](https://fair-dom.org/contribute/join-us) the hundreds of researchers who have improved research management practices in their lab, and for themselves using our software and expertise.
+
+Or [find out more](https://fair-dom.org/about-fairdom) about making your research FAIR – Findable, Accessible, Interoperable, and Re-usable.
+
+
+<div class="flex-video" style="display: block;">
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/PWutnWBfUSw" frameborder="0" allowfullscreen></iframe>
+</div>
