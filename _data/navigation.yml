@@ -10,7 +10,7 @@
       url: /platforms/rightfield.html
 - title: Knowledge Hub
   dropdown:
-    - title: Data Model and Managment
+    - title: Data Model and Management
       url: /knowledgehub/datamodels.html
     - title: Data Management Checklist
       url: /knowledgehub/dm_checklist.html
